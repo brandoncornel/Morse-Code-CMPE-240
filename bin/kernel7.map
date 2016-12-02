@@ -10,10 +10,11 @@ Linker script and memory map
 LOAD build/boot.o
 LOAD build/gpio.o
 LOAD build/main.o
+LOAD build/morse.o
 LOAD build/system_timer.o
 LOAD build/uart.o
 
-.text           0x00008000      0x738
+.text           0x00008000      0x4ec
  *(.text*)
  .text          0x00008000        0xc build/boot.o
                 0x00008000                _start
@@ -24,69 +25,81 @@ LOAD build/uart.o
  .text          0x00008058       0x64 build/main.o
                 0x00008058                blink_once
                 0x00008090                blink_code
- .text.startup  0x000080bc      0x2fc build/main.o
+ .text.startup  0x000080bc       0x64 build/main.o
                 0x000080bc                main
- .text          0x000083b8       0x9c build/system_timer.o
-                0x000083b8                timer_delay_us
-                0x000083e8                timer_delay_ms
-                0x0000841c                timer_delay_sec
- .text          0x00008454      0x2e4 build/uart.o
-                0x00008454                wait_for_tx_slot
-                0x0000846c                wait_for_uart_idle
-                0x00008484                wait_for_rx_slot
-                0x0000849c                wait_for_rx_has_char
-                0x000084b4                delay
-                0x000084e8                init_uart
-                0x000085bc                get_char
-                0x000085f0                put_char
-                0x00008620                put_string
-                0x0000867c                get_string
+ .text          0x00008120       0x4c build/morse.o
+                0x00008120                morse_translate
+                0x00008144                lower_string
+                0x00008148                translate
+ .text          0x0000816c       0x9c build/system_timer.o
+                0x0000816c                timer_delay_us
+                0x0000819c                timer_delay_ms
+                0x000081d0                timer_delay_sec
+ .text          0x00008208      0x2e4 build/uart.o
+                0x00008208                wait_for_tx_slot
+                0x00008220                wait_for_uart_idle
+                0x00008238                wait_for_rx_slot
+                0x00008250                wait_for_rx_has_char
+                0x00008268                delay
+                0x0000829c                init_uart
+                0x00008370                get_char
+                0x000083a4                put_char
+                0x000083d4                put_string
+                0x00008430                get_string
 
-.glue_7         0x00008738        0x0
+.glue_7         0x000084ec        0x0
  .glue_7        0x00000000        0x0 linker stubs
 
-.glue_7t        0x00008738        0x0
+.glue_7t        0x000084ec        0x0
  .glue_7t       0x00000000        0x0 linker stubs
 
-.vfp11_veneer   0x00008738        0x0
+.vfp11_veneer   0x000084ec        0x0
  .vfp11_veneer  0x00000000        0x0 linker stubs
 
-.v4_bx          0x00008738        0x0
+.v4_bx          0x000084ec        0x0
  .v4_bx         0x00000000        0x0 linker stubs
 
-.iplt           0x00008738        0x0
+.iplt           0x000084ec        0x0
  .iplt          0x00000000        0x0 build/boot.o
 
-.bss            0x00008738        0x0
+.bss            0x000084ec        0x0
  *(.bss*)
- .bss           0x00008738        0x0 build/boot.o
- .bss           0x00008738        0x0 build/gpio.o
- .bss           0x00008738        0x0 build/main.o
- .bss           0x00008738        0x0 build/system_timer.o
- .bss           0x00008738        0x0 build/uart.o
+ .bss           0x000084ec        0x0 build/boot.o
+ .bss           0x000084ec        0x0 build/gpio.o
+ .bss           0x000084ec        0x0 build/main.o
+ .bss           0x000084ec        0x0 build/morse.o
+ .bss           0x000084ec        0x0 build/system_timer.o
+ .bss           0x000084ec        0x0 build/uart.o
 
-.rodata         0x00008738       0x30
+.rodata         0x000084ec      0x29c
  *(.rodata*)
  .rodata.str1.4
-                0x00008738       0x30 build/main.o
+                0x000084ec       0x4b build/main.o
+                                 0x4c (size before relaxing)
+ *fill*         0x00008537        0x1 
+ .rodata        0x00008538      0x16c build/morse.o
+ .rodata.str1.4
+                0x000086a4       0xe4 build/morse.o
+                                 0xec (size before relaxing)
  .rodata.str1.4
                 0x00000000        0x4 build/uart.o
 
-.rel.dyn        0x00008768        0x0
+.rel.dyn        0x00008788        0x0
  .rel.iplt      0x00000000        0x0 build/boot.o
 
-.data           0x00008768       0x44
+.data           0x00008788       0x44
  *(.data*)
- .data          0x00008768        0x0 build/boot.o
- .data          0x00008768       0x44 build/gpio.o
-                0x00008768                pin_to_gpio_array
-                0x00008790                gpio_to_pin_array
- .data          0x000087ac        0x0 build/main.o
- .data          0x000087ac        0x0 build/system_timer.o
- .data          0x000087ac        0x0 build/uart.o
+ .data          0x00008788        0x0 build/boot.o
+ .data          0x00008788       0x44 build/gpio.o
+                0x00008788                pin_to_gpio_array
+                0x000087b0                gpio_to_pin_array
+ .data          0x000087cc        0x0 build/main.o
+ .data          0x000087cc        0x0 build/morse.o
+ .data          0x000087cc        0x0 build/system_timer.o
+ .data          0x000087cc        0x0 build/uart.o
 OUTPUT(build/output.elf elf32-littlearm)
 
-.igot.plt       0x000087ac        0x0
+.igot.plt       0x000087cc        0x0
  .igot.plt      0x00000000        0x0 build/boot.o
 
 .ARM.attributes
@@ -98,13 +111,16 @@ OUTPUT(build/output.elf elf32-littlearm)
  .ARM.attributes
                 0x0000004b       0x37 build/main.o
  .ARM.attributes
-                0x00000082       0x37 build/system_timer.o
+                0x00000082       0x37 build/morse.o
  .ARM.attributes
-                0x000000b9       0x37 build/uart.o
+                0x000000b9       0x37 build/system_timer.o
+ .ARM.attributes
+                0x000000f0       0x37 build/uart.o
 
 .comment        0x00000000       0x11
  .comment       0x00000000       0x11 build/gpio.o
                                  0x12 (size before relaxing)
  .comment       0x00000000       0x12 build/main.o
+ .comment       0x00000000       0x12 build/morse.o
  .comment       0x00000000       0x12 build/system_timer.o
  .comment       0x00000000       0x12 build/uart.o

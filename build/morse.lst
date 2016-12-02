@@ -1,0 +1,280 @@
+   1              		.arch armv7-a
+   2              		.eabi_attribute 27, 3
+   3              		.eabi_attribute 28, 1
+   4              		.fpu neon-vfpv4
+   5              		.eabi_attribute 20, 1
+   6              		.eabi_attribute 21, 1
+   7              		.eabi_attribute 23, 3
+   8              		.eabi_attribute 24, 1
+   9              		.eabi_attribute 25, 1
+  10              		.eabi_attribute 26, 1
+  11              		.eabi_attribute 30, 2
+  12              		.eabi_attribute 34, 1
+  13              		.eabi_attribute 18, 4
+  14              		.file	"morse.c"
+  15              		.text
+  16              		.align	2
+  17              		.global	morse_translate
+  19              	morse_translate:
+  20              		@ args = 0, pretend = 0, frame = 0
+  21              		@ frame_needed = 0, uses_anonymous_args = 0
+  22              		@ link register save eliminated.
+  23 0000 200040E2 		sub	r0, r0, #32
+  24 0004 7000EFE6 		uxtb	r0, r0
+  25 0008 5A0050E3 		cmp	r0, #90
+  26 000c 08309F95 		ldrls	r3, .L4
+  27 0010 00019397 		ldrls	r0, [r3, r0, asl #2]
+  28 0014 04009F85 		ldrhi	r0, .L4+4
+  29 0018 1EFF2FE1 		bx	lr
+  30              	.L5:
+  31              		.align	2
+  32              	.L4:
+  33 001c 00000000 		.word	.LANCHOR0
+  34 0020 00000000 		.word	.LC0
+  36              		.align	2
+  37              		.global	lower_string
+  39              	lower_string:
+  40              		@ args = 0, pretend = 0, frame = 0
+  41              		@ frame_needed = 0, uses_anonymous_args = 0
+  42              		@ link register save eliminated.
+  43 0024 1EFF2FE1 		bx	lr
+  45              		.align	2
+  46              		.global	translate
+  48              	translate:
+  49              		@ args = 0, pretend = 0, frame = 0
+  50              		@ frame_needed = 0, uses_anonymous_args = 0
+  51              		@ link register save eliminated.
+  52 0028 200040E2 		sub	r0, r0, #32
+  53 002c 7000EFE6 		uxtb	r0, r0
+  54 0030 5A0050E3 		cmp	r0, #90
+  55 0034 08309F95 		ldrls	r3, .L10
+  56 0038 08009F85 		ldrhi	r0, .L10+4
+  57 003c 00019397 		ldrls	r0, [r3, r0, asl #2]
+  58 0040 FEFFFFEA 		b	put_string
+  59              	.L11:
+  60              		.align	2
+  61              	.L10:
+  62 0044 00000000 		.word	.LANCHOR0
+  63 0048 00000000 		.word	.LC0
+  65              		.section	.rodata
+  66              		.align	2
+  67              		.set	.LANCHOR0,. + 0
+  70              	CSWTCH.3:
+  71 0000 04000000 		.word	.LC1
+  72 0004 00000000 		.word	.LC0
+  73 0008 00000000 		.word	.LC0
+  74 000c 00000000 		.word	.LC0
+  75 0010 00000000 		.word	.LC0
+  76 0014 00000000 		.word	.LC0
+  77 0018 00000000 		.word	.LC0
+  78 001c 00000000 		.word	.LC0
+  79 0020 00000000 		.word	.LC0
+  80 0024 00000000 		.word	.LC0
+  81 0028 00000000 		.word	.LC0
+  82 002c 00000000 		.word	.LC0
+  83 0030 00000000 		.word	.LC0
+  84 0034 00000000 		.word	.LC0
+  85 0038 00000000 		.word	.LC0
+  86 003c 00000000 		.word	.LC0
+  87 0040 04000000 		.word	.LC1
+  88 0044 0C000000 		.word	.LC2
+  89 0048 14000000 		.word	.LC3
+  90 004c 1C000000 		.word	.LC4
+  91 0050 24000000 		.word	.LC5
+  92 0054 2C000000 		.word	.LC6
+  93 0058 34000000 		.word	.LC7
+  94 005c 3C000000 		.word	.LC8
+  95 0060 44000000 		.word	.LC9
+  96 0064 4C000000 		.word	.LC10
+  97 0068 00000000 		.word	.LC0
+  98 006c 00000000 		.word	.LC0
+  99 0070 00000000 		.word	.LC0
+ 100 0074 00000000 		.word	.LC0
+ 101 0078 00000000 		.word	.LC0
+ 102 007c 00000000 		.word	.LC0
+ 103 0080 00000000 		.word	.LC0
+ 104 0084 00000000 		.word	.LC0
+ 105 0088 00000000 		.word	.LC0
+ 106 008c 00000000 		.word	.LC0
+ 107 0090 00000000 		.word	.LC0
+ 108 0094 00000000 		.word	.LC0
+ 109 0098 00000000 		.word	.LC0
+ 110 009c 00000000 		.word	.LC0
+ 111 00a0 00000000 		.word	.LC0
+ 112 00a4 00000000 		.word	.LC0
+ 113 00a8 00000000 		.word	.LC0
+ 114 00ac 00000000 		.word	.LC0
+ 115 00b0 00000000 		.word	.LC0
+ 116 00b4 00000000 		.word	.LC0
+ 117 00b8 00000000 		.word	.LC0
+ 118 00bc 00000000 		.word	.LC0
+ 119 00c0 00000000 		.word	.LC0
+ 120 00c4 00000000 		.word	.LC0
+ 121 00c8 00000000 		.word	.LC0
+ 122 00cc 00000000 		.word	.LC0
+ 123 00d0 00000000 		.word	.LC0
+ 124 00d4 00000000 		.word	.LC0
+ 125 00d8 00000000 		.word	.LC0
+ 126 00dc 00000000 		.word	.LC0
+ 127 00e0 00000000 		.word	.LC0
+ 128 00e4 00000000 		.word	.LC0
+ 129 00e8 00000000 		.word	.LC0
+ 130 00ec 00000000 		.word	.LC0
+ 131 00f0 00000000 		.word	.LC0
+ 132 00f4 00000000 		.word	.LC0
+ 133 00f8 00000000 		.word	.LC0
+ 134 00fc 00000000 		.word	.LC0
+ 135 0100 00000000 		.word	.LC0
+ 136 0104 54000000 		.word	.LC11
+ 137 0108 58000000 		.word	.LC12
+ 138 010c 60000000 		.word	.LC13
+ 139 0110 68000000 		.word	.LC14
+ 140 0114 6C000000 		.word	.LC15
+ 141 0118 70000000 		.word	.LC16
+ 142 011c 78000000 		.word	.LC17
+ 143 0120 7C000000 		.word	.LC18
+ 144 0124 84000000 		.word	.LC19
+ 145 0128 88000000 		.word	.LC20
+ 146 012c 90000000 		.word	.LC21
+ 147 0130 94000000 		.word	.LC22
+ 148 0134 9C000000 		.word	.LC23
+ 149 0138 A0000000 		.word	.LC24
+ 150 013c A4000000 		.word	.LC25
+ 151 0140 A8000000 		.word	.LC26
+ 152 0144 B0000000 		.word	.LC27
+ 153 0148 B8000000 		.word	.LC28
+ 154 014c BC000000 		.word	.LC29
+ 155 0150 C0000000 		.word	.LC30
+ 156 0154 C4000000 		.word	.LC31
+ 157 0158 C8000000 		.word	.LC32
+ 158 015c D0000000 		.word	.LC33
+ 159 0160 D4000000 		.word	.LC34
+ 160 0164 DC000000 		.word	.LC35
+ 161 0168 E4000000 		.word	.LC36
+ 162              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 163              		.align	2
+ 164              	.LC0:
+ 165 0000 2000     		.ascii	" \000"
+ 166 0002 0000     		.space	2
+ 167              	.LC1:
+ 168 0004 2D2D2D2D 		.ascii	"-----\000"
+ 168      2D00
+ 169 000a 0000     		.space	2
+ 170              	.LC2:
+ 171 000c 2E2D2D2D 		.ascii	".----\000"
+ 171      2D00
+ 172 0012 0000     		.space	2
+ 173              	.LC3:
+ 174 0014 2E2E2D2D 		.ascii	"..---\000"
+ 174      2D00
+ 175 001a 0000     		.space	2
+ 176              	.LC4:
+ 177 001c 2E2E2E2D 		.ascii	"...--\000"
+ 177      2D00
+ 178 0022 0000     		.space	2
+ 179              	.LC5:
+ 180 0024 2E2E2E2E 		.ascii	"....-\000"
+ 180      2D00
+ 181 002a 0000     		.space	2
+ 182              	.LC6:
+ 183 002c 2E2E2E2E 		.ascii	".....\000"
+ 183      2E00
+ 184 0032 0000     		.space	2
+ 185              	.LC7:
+ 186 0034 2D2E2E2E 		.ascii	"-....\000"
+ 186      2E00
+ 187 003a 0000     		.space	2
+ 188              	.LC8:
+ 189 003c 2D2D2E2E 		.ascii	"--...\000"
+ 189      2E00
+ 190 0042 0000     		.space	2
+ 191              	.LC9:
+ 192 0044 2D2D2D2E 		.ascii	"---..\000"
+ 192      2E00
+ 193 004a 0000     		.space	2
+ 194              	.LC10:
+ 195 004c 2D2D2D2D 		.ascii	"----.\000"
+ 195      2E00
+ 196 0052 0000     		.space	2
+ 197              	.LC11:
+ 198 0054 2E2D00   		.ascii	".-\000"
+ 199 0057 00       		.space	1
+ 200              	.LC12:
+ 201 0058 2D2E2E2E 		.ascii	"-...\000"
+ 201      00
+ 202 005d 000000   		.space	3
+ 203              	.LC13:
+ 204 0060 2D2E2D2E 		.ascii	"-.-.\000"
+ 204      00
+ 205 0065 000000   		.space	3
+ 206              	.LC14:
+ 207 0068 2D2E2E00 		.ascii	"-..\000"
+ 208              	.LC15:
+ 209 006c 2E00     		.ascii	".\000"
+ 210 006e 0000     		.space	2
+ 211              	.LC16:
+ 212 0070 2E2E2D2E 		.ascii	"..-.\000"
+ 212      00
+ 213 0075 000000   		.space	3
+ 214              	.LC17:
+ 215 0078 2D2D2E00 		.ascii	"--.\000"
+ 216              	.LC18:
+ 217 007c 2E2E2E2E 		.ascii	"....\000"
+ 217      00
+ 218 0081 000000   		.space	3
+ 219              	.LC19:
+ 220 0084 2E2E00   		.ascii	"..\000"
+ 221 0087 00       		.space	1
+ 222              	.LC20:
+ 223 0088 2E2D2D2D 		.ascii	".---\000"
+ 223      00
+ 224 008d 000000   		.space	3
+ 225              	.LC21:
+ 226 0090 2D2E2D00 		.ascii	"-.-\000"
+ 227              	.LC22:
+ 228 0094 2E2D2E2E 		.ascii	".-..\000"
+ 228      00
+ 229 0099 000000   		.space	3
+ 230              	.LC23:
+ 231 009c 2D2D00   		.ascii	"--\000"
+ 232 009f 00       		.space	1
+ 233              	.LC24:
+ 234 00a0 2D2E00   		.ascii	"-.\000"
+ 235 00a3 00       		.space	1
+ 236              	.LC25:
+ 237 00a4 2D2D2D00 		.ascii	"---\000"
+ 238              	.LC26:
+ 239 00a8 2E2D2D2E 		.ascii	".--.\000"
+ 239      00
+ 240 00ad 000000   		.space	3
+ 241              	.LC27:
+ 242 00b0 2D2D2E2D 		.ascii	"--.-\000"
+ 242      00
+ 243 00b5 000000   		.space	3
+ 244              	.LC28:
+ 245 00b8 2E2D2E00 		.ascii	".-.\000"
+ 246              	.LC29:
+ 247 00bc 2E2E2E00 		.ascii	"...\000"
+ 248              	.LC30:
+ 249 00c0 2D00     		.ascii	"-\000"
+ 250 00c2 0000     		.space	2
+ 251              	.LC31:
+ 252 00c4 2E2E2D00 		.ascii	"..-\000"
+ 253              	.LC32:
+ 254 00c8 2E2E2E2D 		.ascii	"...-\000"
+ 254      00
+ 255 00cd 000000   		.space	3
+ 256              	.LC33:
+ 257 00d0 2E2D2D00 		.ascii	".--\000"
+ 258              	.LC34:
+ 259 00d4 2D2E2E2D 		.ascii	"-..-\000"
+ 259      00
+ 260 00d9 000000   		.space	3
+ 261              	.LC35:
+ 262 00dc 2D2E2D2D 		.ascii	"-.--\000"
+ 262      00
+ 263 00e1 000000   		.space	3
+ 264              	.LC36:
+ 265 00e4 2D2D2E2E 		.ascii	"--..\000"
+ 265      00
+ 266 00e9 000000   		.ident	"GCC: (GNU) 4.7.2"
