@@ -3,3 +3,6 @@
 extern const char *morse_translate(const char c);
 extern char lower_string(char chr);
 extern void translate(const char str);
+void blink(const char* character);
+void dit();
+void dah();

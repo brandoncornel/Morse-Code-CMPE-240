@@ -73,4 +73,117 @@
   78 0090 010013E3 		tst	r3, #1
   79 0094 FCFFFF0A 		beq	.L15
   80 0098 1EFF2FE1 		bx	lr
-  82              		.ident	"GCC: (GNU) 4.7.2"
+  82              		.align	2
+  83              		.global	timer_one_unit
+  85              	timer_one_unit:
+  86              		@ args = 0, pretend = 0, frame = 0
+  87              		@ frame_needed = 0, uses_anonymous_args = 0
+  88              		@ link register save eliminated.
+  89 009c 033AA0E3 		mov	r3, #12288
+  90 00a0 30209FE5 		ldr	r2, .L26
+  91 00a4 003F43E3 		movt	r3, 16128
+  92 00a8 041093E5 		ldr	r1, [r3, #4]
+  93 00ac 002092E5 		ldr	r2, [r2, #0]
+  94 00b0 FA0FA0E3 		mov	r0, #1000
+  95 00b4 901222E0 		mla	r2, r0, r2, r1
+  96 00b8 0110A0E3 		mov	r1, #1
+  97 00bc 0C2083E5 		str	r2, [r3, #12]
+  98 00c0 0320A0E1 		mov	r2, r3
+  99 00c4 001083E5 		str	r1, [r3, #0]
+ 100              	.L21:
+ 101 00c8 003092E5 		ldr	r3, [r2, #0]
+ 102 00cc 010013E3 		tst	r3, #1
+ 103 00d0 FCFFFF0A 		beq	.L21
+ 104 00d4 1EFF2FE1 		bx	lr
+ 105              	.L27:
+ 106              		.align	2
+ 107              	.L26:
+ 108 00d8 00000000 		.word	.LANCHOR0
+ 110              		.align	2
+ 111              		.global	timer_three_unit
+ 113              	timer_three_unit:
+ 114              		@ args = 0, pretend = 0, frame = 0
+ 115              		@ frame_needed = 0, uses_anonymous_args = 0
+ 116              		@ link register save eliminated.
+ 117 00dc 38209FE5 		ldr	r2, .L34
+ 118 00e0 033AA0E3 		mov	r3, #12288
+ 119 00e4 003F43E3 		movt	r3, 16128
+ 120 00e8 002092E5 		ldr	r2, [r2, #0]
+ 121 00ec 041093E5 		ldr	r1, [r3, #4]
+ 122 00f0 822082E0 		add	r2, r2, r2, asl #1
+ 123 00f4 FA0FA0E3 		mov	r0, #1000
+ 124 00f8 901222E0 		mla	r2, r0, r2, r1
+ 125 00fc 0110A0E3 		mov	r1, #1
+ 126 0100 0C2083E5 		str	r2, [r3, #12]
+ 127 0104 0320A0E1 		mov	r2, r3
+ 128 0108 001083E5 		str	r1, [r3, #0]
+ 129              	.L29:
+ 130 010c 003092E5 		ldr	r3, [r2, #0]
+ 131 0110 010013E3 		tst	r3, #1
+ 132 0114 FCFFFF0A 		beq	.L29
+ 133 0118 1EFF2FE1 		bx	lr
+ 134              	.L35:
+ 135              		.align	2
+ 136              	.L34:
+ 137 011c 00000000 		.word	.LANCHOR0
+ 139              		.align	2
+ 140              		.global	end_of_char
+ 142              	end_of_char:
+ 143              		@ args = 0, pretend = 0, frame = 0
+ 144              		@ frame_needed = 0, uses_anonymous_args = 0
+ 145              		@ link register save eliminated.
+ 146 0120 38209FE5 		ldr	r2, .L42
+ 147 0124 033AA0E3 		mov	r3, #12288
+ 148 0128 003F43E3 		movt	r3, 16128
+ 149 012c 002092E5 		ldr	r2, [r2, #0]
+ 150 0130 041093E5 		ldr	r1, [r3, #4]
+ 151 0134 8220A0E1 		mov	r2, r2, asl #1
+ 152 0138 FA0FA0E3 		mov	r0, #1000
+ 153 013c 901222E0 		mla	r2, r0, r2, r1
+ 154 0140 0110A0E3 		mov	r1, #1
+ 155 0144 0C2083E5 		str	r2, [r3, #12]
+ 156 0148 0320A0E1 		mov	r2, r3
+ 157 014c 001083E5 		str	r1, [r3, #0]
+ 158              	.L37:
+ 159 0150 003092E5 		ldr	r3, [r2, #0]
+ 160 0154 010013E3 		tst	r3, #1
+ 161 0158 FCFFFF0A 		beq	.L37
+ 162 015c 1EFF2FE1 		bx	lr
+ 163              	.L43:
+ 164              		.align	2
+ 165              	.L42:
+ 166 0160 00000000 		.word	.LANCHOR0
+ 168              		.align	2
+ 169              		.global	end_of_word
+ 171              	end_of_word:
+ 172              		@ args = 0, pretend = 0, frame = 0
+ 173              		@ frame_needed = 0, uses_anonymous_args = 0
+ 174              		@ link register save eliminated.
+ 175 0164 38209FE5 		ldr	r2, .L50
+ 176 0168 033AA0E3 		mov	r3, #12288
+ 177 016c 003F43E3 		movt	r3, 16128
+ 178 0170 002092E5 		ldr	r2, [r2, #0]
+ 179 0174 041093E5 		ldr	r1, [r3, #4]
+ 180 0178 022182E0 		add	r2, r2, r2, asl #2
+ 181 017c FA0FA0E3 		mov	r0, #1000
+ 182 0180 901222E0 		mla	r2, r0, r2, r1
+ 183 0184 0110A0E3 		mov	r1, #1
+ 184 0188 0C2083E5 		str	r2, [r3, #12]
+ 185 018c 0320A0E1 		mov	r2, r3
+ 186 0190 001083E5 		str	r1, [r3, #0]
+ 187              	.L45:
+ 188 0194 003092E5 		ldr	r3, [r2, #0]
+ 189 0198 010013E3 		tst	r3, #1
+ 190 019c FCFFFF0A 		beq	.L45
+ 191 01a0 1EFF2FE1 		bx	lr
+ 192              	.L51:
+ 193              		.align	2
+ 194              	.L50:
+ 195 01a4 00000000 		.word	.LANCHOR0
+ 197              		.global	time_unit
+ 198              		.data
+ 199              		.align	2
+ 200              		.set	.LANCHOR0,. + 0
+ 203              	time_unit:
+ 204 0000 2C010000 		.word	300
+ 205              		.ident	"GCC: (GNU) 4.7.2"

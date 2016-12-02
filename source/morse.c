@@ -1,6 +1,7 @@
 #include "gpio.h"
 #include "uart.h"
 #include "morse.h"
+#include "system_timer.h"
 
 extern const char *morse_translate(const char c) {
   char ch;
@@ -81,9 +82,51 @@ extern const char *morse_translate(const char c) {
   case ' ':
 	return " ";
   default:
-    return " ";
+    return "#";
   }
 
+}
+
+void blink(const char* character){
+	
+  do {
+    switch(*character) {
+    case '.':
+      dit();
+      break;
+    case '-':
+      dah();
+      break;
+	case ' ':
+	  end_of_word();
+	  break;
+    default:
+      break;
+    }
+  } while(*character++);
+  end_of_char();
+}
+
+void dit(){
+	gpio[GPFSEL2] |= 0x8;
+	// Turn on LED
+    gpio[GPSET0] |= 1 << 21;
+    timer_one_unit();
+	
+    // Turn off LED
+    gpio[GPCLR0] |= 1 << 21;
+    timer_one_unit();
+}
+
+void dah(){
+	gpio[GPFSEL2] |= 0x8;
+	// Turn on LED
+    gpio[GPSET0] |= 1 << 21;
+    timer_three_unit();
+	
+    // Turn off LED
+    gpio[GPCLR0] |= 1 << 21;
+    timer_one_unit();
 }
 
 extern char lower_string(char chr){
@@ -96,7 +139,9 @@ extern char lower_string(char chr){
 
 
 extern void translate(const char str){
-	put_string(	morse_translate(str));
+	const char * character = morse_translate(str);
+	put_string(character);
+	blink(character);
 
 	
 }
