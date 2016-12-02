@@ -58,51 +58,41 @@
   63              		@ frame_needed = 0, uses_anonymous_args = 0
   64 0000 30402DE9 		stmfd	sp!, {r4, r5, lr}
   65 0004 CCD04DE2 		sub	sp, sp, #204
-  66              	.L10:
-  67 0008 48009FE5 		ldr	r0, .L14
+  66              	.L14:
+  67 0008 44009FE5 		ldr	r0, .L15
   68 000c FEFFFFEB 		bl	put_string
-  69 0010 44009FE5 		ldr	r0, .L14+4
+  69 0010 40009FE5 		ldr	r0, .L15+4
   70 0014 FEFFFFEB 		bl	put_string
-  71 0018 0D00A0E1 		mov	r0, sp
-  72 001c C810A0E3 		mov	r1, #200
+  71 0018 C810A0E3 		mov	r1, #200
+  72 001c 0D00A0E1 		mov	r0, sp
   73 0020 FEFFFFEB 		bl	get_string
-  74 0024 000050E3 		cmp	r0, #0
-  75 0028 01404D12 		subne	r4, sp, #1
-  76 002c 00508410 		addne	r5, r4, r0
-  77 0030 0300000A 		beq	.L12
-  78              	.L11:
-  79 0034 0100F4E5 		ldrb	r0, [r4, #1]!	@ zero_extendqisi2
-  80 0038 FEFFFFEB 		bl	translate
-  81 003c 050054E1 		cmp	r4, r5
-  82 0040 FBFFFF1A 		bne	.L11
-  83              	.L12:
-  84 0044 14009FE5 		ldr	r0, .L14+8
-  85 0048 FEFFFFEB 		bl	put_string
-  86 004c 08009FE5 		ldr	r0, .L14+4
-  87 0050 FEFFFFEB 		bl	put_string
-  88 0054 EBFFFFEA 		b	.L10
+  74 0024 0040A0E1 		mov	r4, r0
+  75 0028 0200A0E3 		mov	r0, #2
+  76 002c FEFFFFEB 		bl	timer_delay_sec
+  77 0030 000054E3 		cmp	r4, #0
+  78 0034 F3FFFF0A 		beq	.L14
+  79 0038 01504DE2 		sub	r5, sp, #1
+  80 003c 044085E0 		add	r4, r5, r4
+  81              	.L11:
+  82 0040 0100F5E5 		ldrb	r0, [r5, #1]!	@ zero_extendqisi2
+  83 0044 FEFFFFEB 		bl	translate
+  84 0048 040055E1 		cmp	r5, r4
+  85 004c EDFFFF0A 		beq	.L14
+  86 0050 FAFFFFEA 		b	.L11
+  87              	.L16:
+  88              		.align	2
   89              	.L15:
-  90              		.align	2
-  91              	.L14:
-  92 0058 00000000 		.word	.LC0
-  93 005c 2C000000 		.word	.LC1
-  94 0060 30000000 		.word	.LC2
-  96              		.section	.rodata.str1.4,"aMS",%progbits,1
-  97              		.align	2
-  98              	.LC0:
-  99 0000 456E7465 		.ascii	"Enter the sentence you want in morse code:\000"
-  99      72207468 
-  99      65207365 
-  99      6E74656E 
-  99      63652079 
- 100 002b 00       		.space	1
- 101              	.LC1:
- 102 002c 0D0A00   		.ascii	"\015\012\000"
- 103 002f 00       		.space	1
- 104              	.LC2:
- 105 0030 4F757470 		.ascii	"Outputting morse code for:\000"
- 105      75747469 
- 105      6E67206D 
- 105      6F727365 
- 105      20636F64 
- 106 004b 00       		.ident	"GCC: (GNU) 4.7.2"
+  90 0054 00000000 		.word	.LC0
+  91 0058 2C000000 		.word	.LC1
+  93              		.section	.rodata.str1.4,"aMS",%progbits,1
+  94              		.align	2
+  95              	.LC0:
+  96 0000 456E7465 		.ascii	"Enter the sentence you want in morse code:\000"
+  96      72207468 
+  96      65207365 
+  96      6E74656E 
+  96      63652079 
+  97 002b 00       		.space	1
+  98              	.LC1:
+  99 002c 0D0A00   		.ascii	"\015\012\000"
+ 100 002f 00       		.ident	"GCC: (GNU) 4.7.2"

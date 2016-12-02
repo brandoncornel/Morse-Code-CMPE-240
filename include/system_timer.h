@@ -77,4 +77,12 @@ void timer_delay_ms(uint32_t delayMs);
 /// number of seconds.
 void timer_delay_sec(uint32_t delaySec);
 
+void timer_one_unit();
+
+void timer_three_unit();
+
+void end_of_char();
+
+void end_of_word();
+
 #endif // SYSTEM_TIMER_H_

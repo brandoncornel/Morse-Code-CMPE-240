@@ -28,3 +28,26 @@ void timer_delay_sec(uint32_t delaySec)
 {
     timer_delay_us(delaySec * 1000000);
 }
+
+///----------------------------------------------------------
+int time_unit = 300;
+// dot & inter-element gap
+void timer_one_unit()
+{
+	timer_delay_ms(time_unit);
+}
+
+void timer_three_unit()
+{
+	timer_delay_ms(time_unit * 3);
+}
+
+void end_of_char()
+{
+	timer_delay_ms(time_unit * 2);
+}
+
+void end_of_word()
+{
+	timer_delay_ms(time_unit * 5);
+}
