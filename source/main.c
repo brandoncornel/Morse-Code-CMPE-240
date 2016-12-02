@@ -11,7 +11,7 @@ int main()
 	* each character in the string is then ran throught the translate function
 	* where a dictionary converts the character into dots and dashes.
 	*/
-	
+	gpio[GPFSEL2] |= 0x8;
     int counter = 0;
     const int bufferSize = 140;
     char buffer [bufferSize];
@@ -24,6 +24,7 @@ int main()
 			char ch = buffer[i];
 			translate(ch);
 		}
+		put_string("\r\n");
     
 	}
 	return 0;

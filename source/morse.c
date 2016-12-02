@@ -82,7 +82,7 @@ extern const char *morse_translate(const char c) {
   case ' ':
 	return " ";
   default:
-    return " ";
+    return "#";
   }
 
 }
@@ -108,6 +108,7 @@ void blink(const char* character){
 }
 
 void dit(){
+	gpio[GPFSEL2] |= 0x8;
 	// Turn on LED
     gpio[GPSET0] |= 1 << 21;
     timer_one_unit();
@@ -118,6 +119,7 @@ void dit(){
 }
 
 void dah(){
+	gpio[GPFSEL2] |= 0x8;
 	// Turn on LED
     gpio[GPSET0] |= 1 << 21;
     timer_three_unit();

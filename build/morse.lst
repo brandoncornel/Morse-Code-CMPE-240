@@ -19,333 +19,354 @@
   20              		@ args = 0, pretend = 0, frame = 0
   21              		@ frame_needed = 0, uses_anonymous_args = 0
   22              		@ link register save eliminated.
-  23 0000 200040E2 		sub	r0, r0, #32
-  24 0004 7000EFE6 		uxtb	r0, r0
-  25 0008 5A0050E3 		cmp	r0, #90
-  26 000c 08309F95 		ldrls	r3, .L4
-  27 0010 00019397 		ldrls	r0, [r3, r0, asl #2]
-  28 0014 04009F85 		ldrhi	r0, .L4+4
-  29 0018 1EFF2FE1 		bx	lr
-  30              	.L5:
-  31              		.align	2
-  32              	.L4:
-  33 001c 00000000 		.word	.LANCHOR0
-  34 0020 00000000 		.word	.LC0
-  36              		.align	2
-  37              		.global	dit
-  39              	dit:
-  40              		@ args = 0, pretend = 0, frame = 0
-  41              		@ frame_needed = 0, uses_anonymous_args = 0
-  42 0024 10402DE9 		stmfd	sp!, {r4, lr}
-  43 0028 0040A0E3 		mov	r4, #0
-  44 002c 204F43E3 		movt	r4, 16160
-  45 0030 1C3094E5 		ldr	r3, [r4, #28]
-  46 0034 023683E3 		orr	r3, r3, #2097152
-  47 0038 1C3084E5 		str	r3, [r4, #28]
-  48 003c FEFFFFEB 		bl	timer_one_unit
-  49 0040 283094E5 		ldr	r3, [r4, #40]
-  50 0044 023683E3 		orr	r3, r3, #2097152
-  51 0048 283084E5 		str	r3, [r4, #40]
-  52 004c 1040BDE8 		ldmfd	sp!, {r4, lr}
-  53 0050 FEFFFFEA 		b	timer_one_unit
-  55              		.align	2
-  56              		.global	dah
-  58              	dah:
-  59              		@ args = 0, pretend = 0, frame = 0
-  60              		@ frame_needed = 0, uses_anonymous_args = 0
-  61 0054 10402DE9 		stmfd	sp!, {r4, lr}
-  62 0058 0040A0E3 		mov	r4, #0
-  63 005c 204F43E3 		movt	r4, 16160
-  64 0060 1C3094E5 		ldr	r3, [r4, #28]
-  65 0064 023683E3 		orr	r3, r3, #2097152
-  66 0068 1C3084E5 		str	r3, [r4, #28]
-  67 006c FEFFFFEB 		bl	timer_three_unit
-  68 0070 283094E5 		ldr	r3, [r4, #40]
-  69 0074 023683E3 		orr	r3, r3, #2097152
-  70 0078 283084E5 		str	r3, [r4, #40]
-  71 007c 1040BDE8 		ldmfd	sp!, {r4, lr}
-  72 0080 FEFFFFEA 		b	timer_one_unit
-  74              		.align	2
-  75              		.global	blink
-  77              	blink:
-  78              		@ args = 0, pretend = 0, frame = 0
-  79              		@ frame_needed = 0, uses_anonymous_args = 0
-  80 0084 10402DE9 		stmfd	sp!, {r4, lr}
-  81 0088 0040A0E1 		mov	r4, r0
-  82 008c 070000EA 		b	.L13
-  83              	.L17:
-  84 0090 2E0053E3 		cmp	r3, #46
-  85 0094 0E00000A 		beq	.L12
-  86 0098 200053E3 		cmp	r3, #32
-  87 009c 0100001A 		bne	.L9
-  88 00a0 FEFFFFEB 		bl	end_of_word
-  89 00a4 013054E5 		ldrb	r3, [r4, #-1]	@ zero_extendqisi2
-  90              	.L9:
-  91 00a8 000053E3 		cmp	r3, #0
-  92 00ac 0600000A 		beq	.L16
-  93              	.L13:
-  94 00b0 0130D4E4 		ldrb	r3, [r4], #1	@ zero_extendqisi2
-  95 00b4 2D0053E3 		cmp	r3, #45
-  96 00b8 F4FFFF1A 		bne	.L17
-  97 00bc FEFFFFEB 		bl	dah
-  98 00c0 013054E5 		ldrb	r3, [r4, #-1]	@ zero_extendqisi2
-  99 00c4 000053E3 		cmp	r3, #0
- 100 00c8 F8FFFF1A 		bne	.L13
- 101              	.L16:
- 102 00cc 1040BDE8 		ldmfd	sp!, {r4, lr}
- 103 00d0 FEFFFFEA 		b	end_of_char
- 104              	.L12:
- 105 00d4 FEFFFFEB 		bl	dit
- 106 00d8 013054E5 		ldrb	r3, [r4, #-1]	@ zero_extendqisi2
- 107 00dc F1FFFFEA 		b	.L9
- 109              		.align	2
- 110              		.global	lower_string
- 112              	lower_string:
- 113              		@ args = 0, pretend = 0, frame = 0
- 114              		@ frame_needed = 0, uses_anonymous_args = 0
- 115              		@ link register save eliminated.
- 116 00e0 1EFF2FE1 		bx	lr
- 118              		.align	2
- 119              		.global	translate
- 121              	translate:
- 122              		@ args = 0, pretend = 0, frame = 0
- 123              		@ frame_needed = 0, uses_anonymous_args = 0
- 124 00e4 200040E2 		sub	r0, r0, #32
- 125 00e8 7000EFE6 		uxtb	r0, r0
- 126 00ec 5A0050E3 		cmp	r0, #90
- 127 00f0 1C309F95 		ldrls	r3, .L22
- 128 00f4 10402DE9 		stmfd	sp!, {r4, lr}
- 129 00f8 00419397 		ldrls	r4, [r3, r0, asl #2]
- 130 00fc 14409F85 		ldrhi	r4, .L22+4
- 131 0100 0400A0E1 		mov	r0, r4
- 132 0104 FEFFFFEB 		bl	put_string
- 133 0108 0400A0E1 		mov	r0, r4
- 134 010c 1040BDE8 		ldmfd	sp!, {r4, lr}
- 135 0110 FEFFFFEA 		b	blink
- 136              	.L23:
- 137              		.align	2
- 138              	.L22:
- 139 0114 00000000 		.word	.LANCHOR0
- 140 0118 00000000 		.word	.LC0
- 142              		.section	.rodata
- 143              		.align	2
- 144              		.set	.LANCHOR0,. + 0
- 147              	CSWTCH.8:
- 148 0000 00000000 		.word	.LC0
- 149 0004 00000000 		.word	.LC0
- 150 0008 00000000 		.word	.LC0
- 151 000c 00000000 		.word	.LC0
- 152 0010 00000000 		.word	.LC0
- 153 0014 00000000 		.word	.LC0
- 154 0018 00000000 		.word	.LC0
- 155 001c 00000000 		.word	.LC0
- 156 0020 00000000 		.word	.LC0
- 157 0024 00000000 		.word	.LC0
- 158 0028 00000000 		.word	.LC0
- 159 002c 00000000 		.word	.LC0
- 160 0030 00000000 		.word	.LC0
- 161 0034 00000000 		.word	.LC0
- 162 0038 00000000 		.word	.LC0
- 163 003c 00000000 		.word	.LC0
- 164 0040 04000000 		.word	.LC1
- 165 0044 0C000000 		.word	.LC2
- 166 0048 14000000 		.word	.LC3
- 167 004c 1C000000 		.word	.LC4
- 168 0050 24000000 		.word	.LC5
- 169 0054 2C000000 		.word	.LC6
- 170 0058 34000000 		.word	.LC7
- 171 005c 3C000000 		.word	.LC8
- 172 0060 44000000 		.word	.LC9
- 173 0064 4C000000 		.word	.LC10
- 174 0068 00000000 		.word	.LC0
- 175 006c 00000000 		.word	.LC0
- 176 0070 00000000 		.word	.LC0
- 177 0074 00000000 		.word	.LC0
- 178 0078 00000000 		.word	.LC0
- 179 007c 00000000 		.word	.LC0
- 180 0080 00000000 		.word	.LC0
- 181 0084 00000000 		.word	.LC0
- 182 0088 00000000 		.word	.LC0
- 183 008c 00000000 		.word	.LC0
- 184 0090 00000000 		.word	.LC0
- 185 0094 00000000 		.word	.LC0
- 186 0098 00000000 		.word	.LC0
- 187 009c 00000000 		.word	.LC0
- 188 00a0 00000000 		.word	.LC0
- 189 00a4 00000000 		.word	.LC0
- 190 00a8 00000000 		.word	.LC0
- 191 00ac 00000000 		.word	.LC0
- 192 00b0 00000000 		.word	.LC0
- 193 00b4 00000000 		.word	.LC0
- 194 00b8 00000000 		.word	.LC0
- 195 00bc 00000000 		.word	.LC0
- 196 00c0 00000000 		.word	.LC0
- 197 00c4 00000000 		.word	.LC0
- 198 00c8 00000000 		.word	.LC0
- 199 00cc 00000000 		.word	.LC0
- 200 00d0 00000000 		.word	.LC0
- 201 00d4 00000000 		.word	.LC0
- 202 00d8 00000000 		.word	.LC0
- 203 00dc 00000000 		.word	.LC0
- 204 00e0 00000000 		.word	.LC0
- 205 00e4 00000000 		.word	.LC0
- 206 00e8 00000000 		.word	.LC0
- 207 00ec 00000000 		.word	.LC0
- 208 00f0 00000000 		.word	.LC0
- 209 00f4 00000000 		.word	.LC0
- 210 00f8 00000000 		.word	.LC0
- 211 00fc 00000000 		.word	.LC0
- 212 0100 00000000 		.word	.LC0
- 213 0104 54000000 		.word	.LC11
- 214 0108 58000000 		.word	.LC12
- 215 010c 60000000 		.word	.LC13
- 216 0110 68000000 		.word	.LC14
- 217 0114 6C000000 		.word	.LC15
- 218 0118 70000000 		.word	.LC16
- 219 011c 78000000 		.word	.LC17
- 220 0120 7C000000 		.word	.LC18
- 221 0124 84000000 		.word	.LC19
- 222 0128 88000000 		.word	.LC20
- 223 012c 90000000 		.word	.LC21
- 224 0130 94000000 		.word	.LC22
- 225 0134 9C000000 		.word	.LC23
- 226 0138 A0000000 		.word	.LC24
- 227 013c A4000000 		.word	.LC25
- 228 0140 A8000000 		.word	.LC26
- 229 0144 B0000000 		.word	.LC27
- 230 0148 B8000000 		.word	.LC28
- 231 014c BC000000 		.word	.LC29
- 232 0150 C0000000 		.word	.LC30
- 233 0154 C4000000 		.word	.LC31
- 234 0158 C8000000 		.word	.LC32
- 235 015c D0000000 		.word	.LC33
- 236 0160 D4000000 		.word	.LC34
- 237 0164 DC000000 		.word	.LC35
- 238 0168 E4000000 		.word	.LC36
- 239              		.section	.rodata.str1.4,"aMS",%progbits,1
- 240              		.align	2
- 241              	.LC0:
- 242 0000 2000     		.ascii	" \000"
- 243 0002 0000     		.space	2
- 244              	.LC1:
- 245 0004 2D2D2D2D 		.ascii	"-----\000"
- 245      2D00
- 246 000a 0000     		.space	2
- 247              	.LC2:
- 248 000c 2E2D2D2D 		.ascii	".----\000"
- 248      2D00
- 249 0012 0000     		.space	2
- 250              	.LC3:
- 251 0014 2E2E2D2D 		.ascii	"..---\000"
- 251      2D00
- 252 001a 0000     		.space	2
- 253              	.LC4:
- 254 001c 2E2E2E2D 		.ascii	"...--\000"
- 254      2D00
- 255 0022 0000     		.space	2
- 256              	.LC5:
- 257 0024 2E2E2E2E 		.ascii	"....-\000"
- 257      2D00
- 258 002a 0000     		.space	2
- 259              	.LC6:
- 260 002c 2E2E2E2E 		.ascii	".....\000"
- 260      2E00
- 261 0032 0000     		.space	2
- 262              	.LC7:
- 263 0034 2D2E2E2E 		.ascii	"-....\000"
- 263      2E00
- 264 003a 0000     		.space	2
- 265              	.LC8:
- 266 003c 2D2D2E2E 		.ascii	"--...\000"
- 266      2E00
- 267 0042 0000     		.space	2
- 268              	.LC9:
- 269 0044 2D2D2D2E 		.ascii	"---..\000"
- 269      2E00
- 270 004a 0000     		.space	2
- 271              	.LC10:
- 272 004c 2D2D2D2D 		.ascii	"----.\000"
- 272      2E00
- 273 0052 0000     		.space	2
- 274              	.LC11:
- 275 0054 2E2D00   		.ascii	".-\000"
- 276 0057 00       		.space	1
- 277              	.LC12:
- 278 0058 2D2E2E2E 		.ascii	"-...\000"
- 278      00
- 279 005d 000000   		.space	3
- 280              	.LC13:
- 281 0060 2D2E2D2E 		.ascii	"-.-.\000"
- 281      00
- 282 0065 000000   		.space	3
- 283              	.LC14:
- 284 0068 2D2E2E00 		.ascii	"-..\000"
- 285              	.LC15:
- 286 006c 2E00     		.ascii	".\000"
- 287 006e 0000     		.space	2
- 288              	.LC16:
- 289 0070 2E2E2D2E 		.ascii	"..-.\000"
- 289      00
- 290 0075 000000   		.space	3
- 291              	.LC17:
- 292 0078 2D2D2E00 		.ascii	"--.\000"
- 293              	.LC18:
- 294 007c 2E2E2E2E 		.ascii	"....\000"
- 294      00
- 295 0081 000000   		.space	3
- 296              	.LC19:
- 297 0084 2E2E00   		.ascii	"..\000"
- 298 0087 00       		.space	1
- 299              	.LC20:
- 300 0088 2E2D2D2D 		.ascii	".---\000"
- 300      00
- 301 008d 000000   		.space	3
- 302              	.LC21:
- 303 0090 2D2E2D00 		.ascii	"-.-\000"
- 304              	.LC22:
- 305 0094 2E2D2E2E 		.ascii	".-..\000"
- 305      00
- 306 0099 000000   		.space	3
- 307              	.LC23:
- 308 009c 2D2D00   		.ascii	"--\000"
- 309 009f 00       		.space	1
- 310              	.LC24:
- 311 00a0 2D2E00   		.ascii	"-.\000"
- 312 00a3 00       		.space	1
- 313              	.LC25:
- 314 00a4 2D2D2D00 		.ascii	"---\000"
- 315              	.LC26:
- 316 00a8 2E2D2D2E 		.ascii	".--.\000"
- 316      00
- 317 00ad 000000   		.space	3
- 318              	.LC27:
- 319 00b0 2D2D2E2D 		.ascii	"--.-\000"
- 319      00
- 320 00b5 000000   		.space	3
- 321              	.LC28:
- 322 00b8 2E2D2E00 		.ascii	".-.\000"
- 323              	.LC29:
- 324 00bc 2E2E2E00 		.ascii	"...\000"
- 325              	.LC30:
- 326 00c0 2D00     		.ascii	"-\000"
- 327 00c2 0000     		.space	2
- 328              	.LC31:
- 329 00c4 2E2E2D00 		.ascii	"..-\000"
- 330              	.LC32:
- 331 00c8 2E2E2E2D 		.ascii	"...-\000"
- 331      00
- 332 00cd 000000   		.space	3
- 333              	.LC33:
- 334 00d0 2E2D2D00 		.ascii	".--\000"
- 335              	.LC34:
- 336 00d4 2D2E2E2D 		.ascii	"-..-\000"
- 336      00
- 337 00d9 000000   		.space	3
- 338              	.LC35:
- 339 00dc 2D2E2D2D 		.ascii	"-.--\000"
- 339      00
- 340 00e1 000000   		.space	3
- 341              	.LC36:
- 342 00e4 2D2D2E2E 		.ascii	"--..\000"
- 342      00
- 343 00e9 000000   		.ident	"GCC: (GNU) 4.7.2"
+  23 0000 413040E2 		sub	r3, r0, #65
+  24 0004 190053E3 		cmp	r3, #25
+  25 0008 20008092 		addls	r0, r0, #32
+  26 000c 7000EF96 		uxtbls	r0, r0
+  27 0010 200040E2 		sub	r0, r0, #32
+  28 0014 7000EFE6 		uxtb	r0, r0
+  29 0018 5A0050E3 		cmp	r0, #90
+  30 001c 08309F95 		ldrls	r3, .L6
+  31 0020 00019397 		ldrls	r0, [r3, r0, asl #2]
+  32 0024 04009F85 		ldrhi	r0, .L6+4
+  33 0028 1EFF2FE1 		bx	lr
+  34              	.L7:
+  35              		.align	2
+  36              	.L6:
+  37 002c 00000000 		.word	.LANCHOR0
+  38 0030 00000000 		.word	.LC0
+  40              		.align	2
+  41              		.global	dit
+  43              	dit:
+  44              		@ args = 0, pretend = 0, frame = 0
+  45              		@ frame_needed = 0, uses_anonymous_args = 0
+  46 0034 10402DE9 		stmfd	sp!, {r4, lr}
+  47 0038 0040A0E3 		mov	r4, #0
+  48 003c 204F43E3 		movt	r4, 16160
+  49 0040 083094E5 		ldr	r3, [r4, #8]
+  50 0044 083083E3 		orr	r3, r3, #8
+  51 0048 083084E5 		str	r3, [r4, #8]
+  52 004c 1C3094E5 		ldr	r3, [r4, #28]
+  53 0050 023683E3 		orr	r3, r3, #2097152
+  54 0054 1C3084E5 		str	r3, [r4, #28]
+  55 0058 FEFFFFEB 		bl	timer_one_unit
+  56 005c 283094E5 		ldr	r3, [r4, #40]
+  57 0060 023683E3 		orr	r3, r3, #2097152
+  58 0064 283084E5 		str	r3, [r4, #40]
+  59 0068 1040BDE8 		ldmfd	sp!, {r4, lr}
+  60 006c FEFFFFEA 		b	timer_one_unit
+  62              		.align	2
+  63              		.global	dah
+  65              	dah:
+  66              		@ args = 0, pretend = 0, frame = 0
+  67              		@ frame_needed = 0, uses_anonymous_args = 0
+  68 0070 10402DE9 		stmfd	sp!, {r4, lr}
+  69 0074 0040A0E3 		mov	r4, #0
+  70 0078 204F43E3 		movt	r4, 16160
+  71 007c 083094E5 		ldr	r3, [r4, #8]
+  72 0080 083083E3 		orr	r3, r3, #8
+  73 0084 083084E5 		str	r3, [r4, #8]
+  74 0088 1C3094E5 		ldr	r3, [r4, #28]
+  75 008c 023683E3 		orr	r3, r3, #2097152
+  76 0090 1C3084E5 		str	r3, [r4, #28]
+  77 0094 FEFFFFEB 		bl	timer_three_unit
+  78 0098 283094E5 		ldr	r3, [r4, #40]
+  79 009c 023683E3 		orr	r3, r3, #2097152
+  80 00a0 283084E5 		str	r3, [r4, #40]
+  81 00a4 1040BDE8 		ldmfd	sp!, {r4, lr}
+  82 00a8 FEFFFFEA 		b	timer_one_unit
+  84              		.align	2
+  85              		.global	blink
+  87              	blink:
+  88              		@ args = 0, pretend = 0, frame = 0
+  89              		@ frame_needed = 0, uses_anonymous_args = 0
+  90 00ac 10402DE9 		stmfd	sp!, {r4, lr}
+  91 00b0 0040A0E1 		mov	r4, r0
+  92 00b4 070000EA 		b	.L15
+  93              	.L19:
+  94 00b8 2E0053E3 		cmp	r3, #46
+  95 00bc 0E00000A 		beq	.L14
+  96 00c0 200053E3 		cmp	r3, #32
+  97 00c4 0100001A 		bne	.L11
+  98 00c8 FEFFFFEB 		bl	end_of_word
+  99 00cc 013054E5 		ldrb	r3, [r4, #-1]	@ zero_extendqisi2
+ 100              	.L11:
+ 101 00d0 000053E3 		cmp	r3, #0
+ 102 00d4 0600000A 		beq	.L18
+ 103              	.L15:
+ 104 00d8 0130D4E4 		ldrb	r3, [r4], #1	@ zero_extendqisi2
+ 105 00dc 2D0053E3 		cmp	r3, #45
+ 106 00e0 F4FFFF1A 		bne	.L19
+ 107 00e4 FEFFFFEB 		bl	dah
+ 108 00e8 013054E5 		ldrb	r3, [r4, #-1]	@ zero_extendqisi2
+ 109 00ec 000053E3 		cmp	r3, #0
+ 110 00f0 F8FFFF1A 		bne	.L15
+ 111              	.L18:
+ 112 00f4 1040BDE8 		ldmfd	sp!, {r4, lr}
+ 113 00f8 FEFFFFEA 		b	end_of_char
+ 114              	.L14:
+ 115 00fc FEFFFFEB 		bl	dit
+ 116 0100 013054E5 		ldrb	r3, [r4, #-1]	@ zero_extendqisi2
+ 117 0104 F1FFFFEA 		b	.L11
+ 119              		.align	2
+ 120              		.global	lower_string
+ 122              	lower_string:
+ 123              		@ args = 0, pretend = 0, frame = 0
+ 124              		@ frame_needed = 0, uses_anonymous_args = 0
+ 125              		@ link register save eliminated.
+ 126 0108 413040E2 		sub	r3, r0, #65
+ 127 010c 190053E3 		cmp	r3, #25
+ 128 0110 20008092 		addls	r0, r0, #32
+ 129 0114 7000EF96 		uxtbls	r0, r0
+ 130 0118 1EFF2FE1 		bx	lr
+ 132              		.align	2
+ 133              		.global	translate
+ 135              	translate:
+ 136              		@ args = 0, pretend = 0, frame = 0
+ 137              		@ frame_needed = 0, uses_anonymous_args = 0
+ 138 011c 413040E2 		sub	r3, r0, #65
+ 139 0120 190053E3 		cmp	r3, #25
+ 140 0124 20008092 		addls	r0, r0, #32
+ 141 0128 7000EF96 		uxtbls	r0, r0
+ 142 012c 200040E2 		sub	r0, r0, #32
+ 143 0130 7000EFE6 		uxtb	r0, r0
+ 144 0134 5A0050E3 		cmp	r0, #90
+ 145 0138 1C309F95 		ldrls	r3, .L27
+ 146 013c 10402DE9 		stmfd	sp!, {r4, lr}
+ 147 0140 00419397 		ldrls	r4, [r3, r0, asl #2]
+ 148 0144 14409F85 		ldrhi	r4, .L27+4
+ 149 0148 0400A0E1 		mov	r0, r4
+ 150 014c FEFFFFEB 		bl	put_string
+ 151 0150 0400A0E1 		mov	r0, r4
+ 152 0154 1040BDE8 		ldmfd	sp!, {r4, lr}
+ 153 0158 FEFFFFEA 		b	blink
+ 154              	.L28:
+ 155              		.align	2
+ 156              	.L27:
+ 157 015c 00000000 		.word	.LANCHOR0
+ 158 0160 00000000 		.word	.LC0
+ 160              		.section	.rodata
+ 161              		.align	2
+ 162              		.set	.LANCHOR0,. + 0
+ 165              	CSWTCH.8:
+ 166 0000 04000000 		.word	.LC1
+ 167 0004 00000000 		.word	.LC0
+ 168 0008 00000000 		.word	.LC0
+ 169 000c 00000000 		.word	.LC0
+ 170 0010 00000000 		.word	.LC0
+ 171 0014 00000000 		.word	.LC0
+ 172 0018 00000000 		.word	.LC0
+ 173 001c 00000000 		.word	.LC0
+ 174 0020 00000000 		.word	.LC0
+ 175 0024 00000000 		.word	.LC0
+ 176 0028 00000000 		.word	.LC0
+ 177 002c 00000000 		.word	.LC0
+ 178 0030 00000000 		.word	.LC0
+ 179 0034 00000000 		.word	.LC0
+ 180 0038 00000000 		.word	.LC0
+ 181 003c 00000000 		.word	.LC0
+ 182 0040 08000000 		.word	.LC2
+ 183 0044 10000000 		.word	.LC3
+ 184 0048 18000000 		.word	.LC4
+ 185 004c 20000000 		.word	.LC5
+ 186 0050 28000000 		.word	.LC6
+ 187 0054 30000000 		.word	.LC7
+ 188 0058 38000000 		.word	.LC8
+ 189 005c 40000000 		.word	.LC9
+ 190 0060 48000000 		.word	.LC10
+ 191 0064 50000000 		.word	.LC11
+ 192 0068 00000000 		.word	.LC0
+ 193 006c 00000000 		.word	.LC0
+ 194 0070 00000000 		.word	.LC0
+ 195 0074 00000000 		.word	.LC0
+ 196 0078 00000000 		.word	.LC0
+ 197 007c 00000000 		.word	.LC0
+ 198 0080 00000000 		.word	.LC0
+ 199 0084 00000000 		.word	.LC0
+ 200 0088 00000000 		.word	.LC0
+ 201 008c 00000000 		.word	.LC0
+ 202 0090 00000000 		.word	.LC0
+ 203 0094 00000000 		.word	.LC0
+ 204 0098 00000000 		.word	.LC0
+ 205 009c 00000000 		.word	.LC0
+ 206 00a0 00000000 		.word	.LC0
+ 207 00a4 00000000 		.word	.LC0
+ 208 00a8 00000000 		.word	.LC0
+ 209 00ac 00000000 		.word	.LC0
+ 210 00b0 00000000 		.word	.LC0
+ 211 00b4 00000000 		.word	.LC0
+ 212 00b8 00000000 		.word	.LC0
+ 213 00bc 00000000 		.word	.LC0
+ 214 00c0 00000000 		.word	.LC0
+ 215 00c4 00000000 		.word	.LC0
+ 216 00c8 00000000 		.word	.LC0
+ 217 00cc 00000000 		.word	.LC0
+ 218 00d0 00000000 		.word	.LC0
+ 219 00d4 00000000 		.word	.LC0
+ 220 00d8 00000000 		.word	.LC0
+ 221 00dc 00000000 		.word	.LC0
+ 222 00e0 00000000 		.word	.LC0
+ 223 00e4 00000000 		.word	.LC0
+ 224 00e8 00000000 		.word	.LC0
+ 225 00ec 00000000 		.word	.LC0
+ 226 00f0 00000000 		.word	.LC0
+ 227 00f4 00000000 		.word	.LC0
+ 228 00f8 00000000 		.word	.LC0
+ 229 00fc 00000000 		.word	.LC0
+ 230 0100 00000000 		.word	.LC0
+ 231 0104 58000000 		.word	.LC12
+ 232 0108 5C000000 		.word	.LC13
+ 233 010c 64000000 		.word	.LC14
+ 234 0110 6C000000 		.word	.LC15
+ 235 0114 70000000 		.word	.LC16
+ 236 0118 74000000 		.word	.LC17
+ 237 011c 7C000000 		.word	.LC18
+ 238 0120 80000000 		.word	.LC19
+ 239 0124 88000000 		.word	.LC20
+ 240 0128 8C000000 		.word	.LC21
+ 241 012c 94000000 		.word	.LC22
+ 242 0130 98000000 		.word	.LC23
+ 243 0134 A0000000 		.word	.LC24
+ 244 0138 A4000000 		.word	.LC25
+ 245 013c A8000000 		.word	.LC26
+ 246 0140 AC000000 		.word	.LC27
+ 247 0144 B4000000 		.word	.LC28
+ 248 0148 BC000000 		.word	.LC29
+ 249 014c C0000000 		.word	.LC30
+ 250 0150 C4000000 		.word	.LC31
+ 251 0154 C8000000 		.word	.LC32
+ 252 0158 CC000000 		.word	.LC33
+ 253 015c D4000000 		.word	.LC34
+ 254 0160 D8000000 		.word	.LC35
+ 255 0164 E0000000 		.word	.LC36
+ 256 0168 E8000000 		.word	.LC37
+ 257              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 258              		.align	2
+ 259              	.LC0:
+ 260 0000 2300     		.ascii	"#\000"
+ 261 0002 0000     		.space	2
+ 262              	.LC1:
+ 263 0004 2000     		.ascii	" \000"
+ 264 0006 0000     		.space	2
+ 265              	.LC2:
+ 266 0008 2D2D2D2D 		.ascii	"-----\000"
+ 266      2D00
+ 267 000e 0000     		.space	2
+ 268              	.LC3:
+ 269 0010 2E2D2D2D 		.ascii	".----\000"
+ 269      2D00
+ 270 0016 0000     		.space	2
+ 271              	.LC4:
+ 272 0018 2E2E2D2D 		.ascii	"..---\000"
+ 272      2D00
+ 273 001e 0000     		.space	2
+ 274              	.LC5:
+ 275 0020 2E2E2E2D 		.ascii	"...--\000"
+ 275      2D00
+ 276 0026 0000     		.space	2
+ 277              	.LC6:
+ 278 0028 2E2E2E2E 		.ascii	"....-\000"
+ 278      2D00
+ 279 002e 0000     		.space	2
+ 280              	.LC7:
+ 281 0030 2E2E2E2E 		.ascii	".....\000"
+ 281      2E00
+ 282 0036 0000     		.space	2
+ 283              	.LC8:
+ 284 0038 2D2E2E2E 		.ascii	"-....\000"
+ 284      2E00
+ 285 003e 0000     		.space	2
+ 286              	.LC9:
+ 287 0040 2D2D2E2E 		.ascii	"--...\000"
+ 287      2E00
+ 288 0046 0000     		.space	2
+ 289              	.LC10:
+ 290 0048 2D2D2D2E 		.ascii	"---..\000"
+ 290      2E00
+ 291 004e 0000     		.space	2
+ 292              	.LC11:
+ 293 0050 2D2D2D2D 		.ascii	"----.\000"
+ 293      2E00
+ 294 0056 0000     		.space	2
+ 295              	.LC12:
+ 296 0058 2E2D00   		.ascii	".-\000"
+ 297 005b 00       		.space	1
+ 298              	.LC13:
+ 299 005c 2D2E2E2E 		.ascii	"-...\000"
+ 299      00
+ 300 0061 000000   		.space	3
+ 301              	.LC14:
+ 302 0064 2D2E2D2E 		.ascii	"-.-.\000"
+ 302      00
+ 303 0069 000000   		.space	3
+ 304              	.LC15:
+ 305 006c 2D2E2E00 		.ascii	"-..\000"
+ 306              	.LC16:
+ 307 0070 2E00     		.ascii	".\000"
+ 308 0072 0000     		.space	2
+ 309              	.LC17:
+ 310 0074 2E2E2D2E 		.ascii	"..-.\000"
+ 310      00
+ 311 0079 000000   		.space	3
+ 312              	.LC18:
+ 313 007c 2D2D2E00 		.ascii	"--.\000"
+ 314              	.LC19:
+ 315 0080 2E2E2E2E 		.ascii	"....\000"
+ 315      00
+ 316 0085 000000   		.space	3
+ 317              	.LC20:
+ 318 0088 2E2E00   		.ascii	"..\000"
+ 319 008b 00       		.space	1
+ 320              	.LC21:
+ 321 008c 2E2D2D2D 		.ascii	".---\000"
+ 321      00
+ 322 0091 000000   		.space	3
+ 323              	.LC22:
+ 324 0094 2D2E2D00 		.ascii	"-.-\000"
+ 325              	.LC23:
+ 326 0098 2E2D2E2E 		.ascii	".-..\000"
+ 326      00
+ 327 009d 000000   		.space	3
+ 328              	.LC24:
+ 329 00a0 2D2D00   		.ascii	"--\000"
+ 330 00a3 00       		.space	1
+ 331              	.LC25:
+ 332 00a4 2D2E00   		.ascii	"-.\000"
+ 333 00a7 00       		.space	1
+ 334              	.LC26:
+ 335 00a8 2D2D2D00 		.ascii	"---\000"
+ 336              	.LC27:
+ 337 00ac 2E2D2D2E 		.ascii	".--.\000"
+ 337      00
+ 338 00b1 000000   		.space	3
+ 339              	.LC28:
+ 340 00b4 2D2D2E2D 		.ascii	"--.-\000"
+ 340      00
+ 341 00b9 000000   		.space	3
+ 342              	.LC29:
+ 343 00bc 2E2D2E00 		.ascii	".-.\000"
+ 344              	.LC30:
+ 345 00c0 2E2E2E00 		.ascii	"...\000"
+ 346              	.LC31:
+ 347 00c4 2D00     		.ascii	"-\000"
+ 348 00c6 0000     		.space	2
+ 349              	.LC32:
+ 350 00c8 2E2E2D00 		.ascii	"..-\000"
+ 351              	.LC33:
+ 352 00cc 2E2E2E2D 		.ascii	"...-\000"
+ 352      00
+ 353 00d1 000000   		.space	3
+ 354              	.LC34:
+ 355 00d4 2E2D2D00 		.ascii	".--\000"
+ 356              	.LC35:
+ 357 00d8 2D2E2E2D 		.ascii	"-..-\000"
+ 357      00
+ 358 00dd 000000   		.space	3
+ 359              	.LC36:
+ 360 00e0 2D2E2D2D 		.ascii	"-.--\000"
+ 360      00
+ 361 00e5 000000   		.space	3
+ 362              	.LC37:
+ 363 00e8 2D2D2E2E 		.ascii	"--..\000"
+ 363      00
+ 364 00ed 000000   		.ident	"GCC: (GNU) 4.7.2"
