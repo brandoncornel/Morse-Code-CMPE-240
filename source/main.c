@@ -33,7 +33,7 @@ int main()
 {
     // Implement Lab 4 as described in the lab manual
     int counter = 0;
-    const int bufferSize = 200;
+    const int bufferSize = 140;
     char buffer [bufferSize];
 	while(1){
 		put_string("Enter the sentence you want in morse code:");
