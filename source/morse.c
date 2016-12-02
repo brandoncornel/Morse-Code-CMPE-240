@@ -78,7 +78,7 @@ extern const char *morse_translate(const char c) {
   case '9':
     return "----.";
   case ' ':
-	return "-----";
+	return " ";
   default:
     return " ";
   }
