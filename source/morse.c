@@ -3,8 +3,9 @@
 #include "morse.h"
 
 extern const char *morse_translate(const char c) {
-  lower_string(c);
-  switch(c) {
+  char ch;
+  ch = lower_string(c);
+  switch(ch) {
   case 'a':
     return ".-";
   case 'b':
@@ -85,10 +86,11 @@ extern const char *morse_translate(const char c) {
 
 }
 
-extern void lower_string(char chr){
+extern char lower_string(char chr){
 	if(chr>='A' && chr<='Z'){
 		chr = chr + 32;
 	}
+  return chr;
 }
 
 
