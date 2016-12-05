@@ -81,8 +81,10 @@ extern const char *morse_translate(const char c) {
     return "----.";
   case ' ':
 	return " ";
+  case '\b':
+    return "";
   default:
-    return "#";
+    return "";
   }
 
 }

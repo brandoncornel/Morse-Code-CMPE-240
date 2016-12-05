@@ -51,7 +51,7 @@ Disassembly of section .text:
     8094:	97d30000 	ldrbls	r0, [r3, r0]
     8098:	e6af0070 	sxtb	r0, r0
     809c:	e12fff1e 	bx	lr
-    80a0:	00008944 	.word	0x00008944
+    80a0:	000089a0 	.word	0x000089a0
 
 000080a4 <convert_gpio_to_pin>:
     80a4:	e6ef3070 	uxtb	r3, r0
@@ -62,7 +62,7 @@ Disassembly of section .text:
     80b8:	95d00028 	ldrbls	r0, [r0, #40]	; 0x28
     80bc:	e6af0070 	sxtb	r0, r0
     80c0:	e12fff1e 	bx	lr
-    80c4:	00008944 	.word	0x00008944
+    80c4:	000089a0 	.word	0x000089a0
 
 000080c8 <mmio_write>:
     80c8:	e5801000 	str	r1, [r0]
@@ -334,7 +334,7 @@ Disassembly of section .text:
     8480:	e3130001 	tst	r3, #1
     8484:	0afffffc 	beq	847c <timer_one_unit+0x2c>
     8488:	e12fff1e 	bx	lr
-    848c:	00008988 	.word	0x00008988
+    848c:	000089e4 	.word	0x000089e4
 
 00008490 <timer_three_unit>:
     8490:	e59f2038 	ldr	r2, [pc, #56]	; 84d0 <timer_three_unit+0x40>
@@ -353,7 +353,7 @@ Disassembly of section .text:
     84c4:	e3130001 	tst	r3, #1
     84c8:	0afffffc 	beq	84c0 <timer_three_unit+0x30>
     84cc:	e12fff1e 	bx	lr
-    84d0:	00008988 	.word	0x00008988
+    84d0:	000089e4 	.word	0x000089e4
 
 000084d4 <end_of_char>:
     84d4:	e59f2038 	ldr	r2, [pc, #56]	; 8514 <end_of_char+0x40>
@@ -372,7 +372,7 @@ Disassembly of section .text:
     8508:	e3130001 	tst	r3, #1
     850c:	0afffffc 	beq	8504 <end_of_char+0x30>
     8510:	e12fff1e 	bx	lr
-    8514:	00008988 	.word	0x00008988
+    8514:	000089e4 	.word	0x000089e4
 
 00008518 <end_of_word>:
     8518:	e59f2038 	ldr	r2, [pc, #56]	; 8558 <end_of_word+0x40>
@@ -391,22 +391,22 @@ Disassembly of section .text:
     854c:	e3130001 	tst	r3, #1
     8550:	0afffffc 	beq	8548 <end_of_word+0x30>
     8554:	e12fff1e 	bx	lr
-    8558:	00008988 	.word	0x00008988
+    8558:	000089e4 	.word	0x000089e4
 
 0000855c <morse_translate>:
     855c:	e2403041 	sub	r3, r0, #65	; 0x41
     8560:	e3530019 	cmp	r3, #25
     8564:	92800020 	addls	r0, r0, #32
     8568:	96ef0070 	uxtbls	r0, r0
-    856c:	e2400020 	sub	r0, r0, #32
+    856c:	e2400008 	sub	r0, r0, #8
     8570:	e6ef0070 	uxtb	r0, r0
-    8574:	e350005a 	cmp	r0, #90	; 0x5a
+    8574:	e3500072 	cmp	r0, #114	; 0x72
     8578:	959f3008 	ldrls	r3, [pc, #8]	; 8588 <morse_translate+0x2c>
     857c:	97930100 	ldrls	r0, [r3, r0, lsl #2]
     8580:	859f0004 	ldrhi	r0, [pc, #4]	; 858c <morse_translate+0x30>
     8584:	e12fff1e 	bx	lr
     8588:	000086f0 	.word	0x000086f0
-    858c:	0000885c 	.word	0x0000885c
+    858c:	00008944 	.word	0x00008944
 
 00008590 <dit>:
     8590:	e92d4010 	push	{r4, lr}
@@ -479,9 +479,9 @@ Disassembly of section .text:
     867c:	e3530019 	cmp	r3, #25
     8680:	92800020 	addls	r0, r0, #32
     8684:	96ef0070 	uxtbls	r0, r0
-    8688:	e2400020 	sub	r0, r0, #32
+    8688:	e2400008 	sub	r0, r0, #8
     868c:	e6ef0070 	uxtb	r0, r0
-    8690:	e350005a 	cmp	r0, #90	; 0x5a
+    8690:	e3500072 	cmp	r0, #114	; 0x72
     8694:	959f301c 	ldrls	r3, [pc, #28]	; 86b8 <translate+0x40>
     8698:	e92d4010 	push	{r4, lr}
     869c:	97934100 	ldrls	r4, [r3, r0, lsl #2]
@@ -492,4 +492,4 @@ Disassembly of section .text:
     86b0:	e8bd4010 	pop	{r4, lr}
     86b4:	eaffffd3 	b	8608 <blink>
     86b8:	000086f0 	.word	0x000086f0
-    86bc:	0000885c 	.word	0x0000885c
+    86bc:	00008944 	.word	0x00008944
