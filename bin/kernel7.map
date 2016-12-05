@@ -76,7 +76,7 @@ LOAD build/morse.o
  .bss           0x000086c0        0x0 build/system_timer.o
  .bss           0x000086c0        0x0 build/morse.o
 
-.rodata         0x000086c0      0x284
+.rodata         0x000086c0      0x2e0
  *(.rodata*)
  .rodata.str1.4
                 0x000086c0       0x2f build/main.o
@@ -84,28 +84,28 @@ LOAD build/morse.o
  .rodata.str1.4
                 0x00000000        0x4 build/uart.o
  *fill*         0x000086ef        0x1 
- .rodata        0x000086f0      0x16c build/morse.o
+ .rodata        0x000086f0      0x1cc build/morse.o
  .rodata.str1.4
-                0x0000885c       0xe8 build/morse.o
+                0x000088bc       0xe4 build/morse.o
                                  0xf0 (size before relaxing)
 
-.rel.dyn        0x00008944        0x0
+.rel.dyn        0x000089a0        0x0
  .rel.iplt      0x00000000        0x0 build/boot.o
 
-.data           0x00008944       0x48
+.data           0x000089a0       0x48
  *(.data*)
- .data          0x00008944        0x0 build/boot.o
- .data          0x00008944        0x0 build/main.o
- .data          0x00008944       0x44 build/gpio.o
-                0x00008944                pin_to_gpio_array
-                0x0000896c                gpio_to_pin_array
- .data          0x00008988        0x0 build/uart.o
- .data          0x00008988        0x4 build/system_timer.o
-                0x00008988                time_unit
- .data          0x0000898c        0x0 build/morse.o
+ .data          0x000089a0        0x0 build/boot.o
+ .data          0x000089a0        0x0 build/main.o
+ .data          0x000089a0       0x44 build/gpio.o
+                0x000089a0                pin_to_gpio_array
+                0x000089c8                gpio_to_pin_array
+ .data          0x000089e4        0x0 build/uart.o
+ .data          0x000089e4        0x4 build/system_timer.o
+                0x000089e4                time_unit
+ .data          0x000089e8        0x0 build/morse.o
 OUTPUT(build/output.elf elf32-littlearm)
 
-.igot.plt       0x0000898c        0x0
+.igot.plt       0x000089e8        0x0
  .igot.plt      0x00000000        0x0 build/boot.o
 
 .ARM.attributes
